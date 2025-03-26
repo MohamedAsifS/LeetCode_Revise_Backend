@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
-
+import os
 from environ import Env
 from datetime import timedelta
 from urllib.parse import urlparse
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -142,6 +143,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -196,9 +198,12 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # if you're using React dev server
     "chrome-extension://jgaocgbidphajniogibgjdeleaiocpoh",  # your extension ID
+    "https://leetcoderevisebackend-production.up.railway.app/"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "chrome-extension://jgaocgbidphajniogibgjdeleaiocpoh",
+    "https://leetcoderevisebackend-production.up.railway.app/"
+    
 ]
