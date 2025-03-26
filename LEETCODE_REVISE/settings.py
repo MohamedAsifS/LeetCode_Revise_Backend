@@ -204,6 +204,6 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "chrome-extension://jgaocgbidphajniogibgjdeleaiocpoh",
-    
+    "https://leetcoderevisebackend-production.up.railway.app"
     
 ]
