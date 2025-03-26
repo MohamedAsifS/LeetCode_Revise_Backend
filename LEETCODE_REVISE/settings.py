@@ -207,3 +207,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://leetcoderevisebackend-production.up.railway.app"
     
 ]
+
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
