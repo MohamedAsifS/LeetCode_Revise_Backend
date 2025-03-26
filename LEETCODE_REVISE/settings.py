@@ -156,10 +156,10 @@ SITE_ID=1
 SOCIALACCOUNT_PROVIDERS = {
    
     'github': {
-        # 'APP': {
-        #     'client_id': env("OAUTH_GITHUB_CLIENT_ID"),
-        #     'secret': env("OAUTH_GITHUB_SECRET"),
-        # },
+        'APP': {
+            'client_id': env("GITHUB_ID"),
+            'secret': env("GITHUB_KEY"),
+        },
         'AUTH_PARAMS':{
             'prompt':'consent'
         },
