@@ -1,1 +1,1 @@
-web: gunicorn LEETCODE.wsgi
+web: gunicorn LEETCODE_REVISE.wsgi
