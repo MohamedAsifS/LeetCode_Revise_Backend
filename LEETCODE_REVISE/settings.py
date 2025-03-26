@@ -198,7 +198,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # if you're using React dev server
     "chrome-extension://jgaocgbidphajniogibgjdeleaiocpoh",  # your extension ID
-    "https://leetcoderevisebackend-production.up.railway.app/"
+   
 ]
 
 CSRF_TRUSTED_ORIGINS = [
