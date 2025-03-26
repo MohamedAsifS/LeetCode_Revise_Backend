@@ -177,7 +177,7 @@ AUTHENTICATION_BACKENDS=(
     
 )
 
-LOGIN_REDIRECT_URL='/callback/callback/'
+LOGIN_REDIRECT_URL='/callback/'
 SOCIALACCOUNT_STORE_TOKENS=True
 
 CORS_ORIGIN_ALLOW_ALL=True 
@@ -204,6 +204,6 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "chrome-extension://jgaocgbidphajniogibgjdeleaiocpoh",
-    "https://leetcoderevisebackend-production.up.railway.app"
+    
     
 ]
