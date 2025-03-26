@@ -22,7 +22,7 @@ from rest_framework_simplejwt.views import TokenRefreshView,TokenObtainPairView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/',include('allauth.urls')),
-    path('callback/',HandleGithubCallback),
+    path('callback/callback/',HandleGithubCallback),
     path('verify/',TokenRefreshView.as_view()),
     path('datas',submit_to_github.as_view()),
     path('repo',list_repo.as_view()),
