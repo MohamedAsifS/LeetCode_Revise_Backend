@@ -96,7 +96,8 @@ class submit_to_github(APIView):
             "memory":data['memory'],
             "code":data['code'],
             "id":data['id'],
-            "lang":data['lang']
+            "lang":data['lang'],
+            "question_id":data['question_id'],
             
             
         }
@@ -141,10 +142,10 @@ class submit_to_github(APIView):
               if SocialAccounts:
                   token=SocialToken.objects.filter(account=SocialAccounts,account__provider='github').first().token
                   print(token,repo)
-                  message=f"Runs {extra_submission['data']['submissionDetails']['runtimeDisplay']} with {extra_submission['data']['submissionDetails']['memoryDisplay']} where beats in speed {extra_submission['data']['submissionDetails'][ 'runtimePercentile']} "
+                  message=f"Runs in {extra_submission['data']['submissionDetails']['runtimeDisplay']} using {extra_submission['data']['submissionDetails']['memoryDisplay']}, beating {round(extra_submission['data']['submissionDetails'][ 'runtimePercentile'])}% in speed. "
                   content=f"{extra_submission['data']['submissionDetails']['question']['title']} {extra_submission['data']['submissionDetails']['question']['content']}"
                   print(content)
-                  res=github_uploader(token=token,repo=repo,title=values["title"],lang=languages[values["lang"].capitalize()],message=message,code=values["code"],branch="main",content=content)
+                  res=github_uploader(token=token,repo=repo,title=f"{values["question_id"]}-{values["title"]}",lang=languages[values["lang"].capitalize()],message=message,code=values["code"],branch="main",content=content)
                   # github_uploader(token,repo,values['title'],"py","please","print('Asifars')","main")
 
                   # print(res)
