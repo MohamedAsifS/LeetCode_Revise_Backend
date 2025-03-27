@@ -23,20 +23,21 @@ def github_uploader(token,repo,title,lang,message,code,branch,content):
         
     except GithubException as e:
         if e.status == 404:
-            
-           repo.create_file(
-            path=path,
-            message=message,
-            content=code,
-           
-        )
-           repo.create_file(
+            repo.create_file(
                path=path_2,
                message="Readme uploaded",
                content=content
                
            )
         
+            
+            repo.create_file(
+            path=path,
+            message=message,
+            content=code,
+           
+        )
+           
          
    
     print("File created successfully")
