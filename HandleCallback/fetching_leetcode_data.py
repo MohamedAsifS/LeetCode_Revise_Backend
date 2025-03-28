@@ -40,3 +40,6 @@ def adding_zero(value,needed):
     change=str(value)
     if len(change) < needed:
         return "0" * (needed - len(change)) + change
+    else:
+        return value
+    
