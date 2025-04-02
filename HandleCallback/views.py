@@ -119,7 +119,6 @@ class submit_to_github(APIView):
     runtimePercentile
     memoryPercentile
     question {
-       questionFrontendId
       title
       titleSlug
       content
@@ -146,7 +145,6 @@ class submit_to_github(APIView):
                   message=f"Runs in {extra_submission['data']['submissionDetails']['runtimeDisplay']} using {extra_submission['data']['submissionDetails']['memoryDisplay']}, beating {round(extra_submission['data']['submissionDetails'][ 'runtimePercentile'])}% in speed. - LeetRevise "
                   content=f"{extra_submission['data']['submissionDetails']['question']['title']} {extra_submission['data']['submissionDetails']['question']['content']}"
                   print(content)
-              
                   res=github_uploader(token=token,repo=repo,title=f"{adding_zero(values["question_id"],4)}-{values["title"]}",lang=languages[values["lang"].capitalize()],message=message,code=values["code"],branch="main",content=content)
                   # github_uploader(token,repo,values['title'],"py","please","print('Asifars')","main")
 
