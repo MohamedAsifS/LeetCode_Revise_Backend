@@ -25,16 +25,16 @@ def HandleGithubCallback(request):
    
     social_account=SocialAccount.objects.filter(user=user).first()
     if not social_account:
-       return  redirect(f'https://mabkgldilcclknoipfmglhhpeoobabfb.chromiumapp.org/?error=NoSocialAccount')
+       return  redirect(f'https://bfmpdhjpaoajdjlccmdejejgdmbiolfb.chromiumapp.org/?error=NoSocialAccount')
     token=SocialToken.objects.filter(account=social_account,account__provider='github').first()
     if token:
         get_refresh=RefreshToken.for_user(user)
         print(get_refresh)
         get_access=get_refresh.access_token
         print(get_access)
-        return redirect(f'https://mabkgldilcclknoipfmglhhpeoobabfb.chromiumapp.org/?access={get_access}&refresh={get_refresh}')
+        return redirect(f'https://bfmpdhjpaoajdjlccmdejejgdmbiolfb.chromiumapp.org/?access={get_access}&refresh={get_refresh}')
     else:
-        return redirect("https://mabkgldilcclknoipfmglhhpeoobabfb.chromiumapp.org/?error=NoAccessToken")
+        return redirect("https://bfmpdhjpaoajdjlccmdejejgdmbiolfb.chromiumapp.org/?error=NoAccessToken")
 
 class submit_to_github(APIView):
   authentication_classes = [JWTAuthentication]
