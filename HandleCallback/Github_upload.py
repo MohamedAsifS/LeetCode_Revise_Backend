@@ -1,5 +1,5 @@
 from github import Github,GithubException
-
+import requests
 
 
 def github_uploader(token,repo,title,lang,message,code,branch,content):
@@ -50,7 +50,12 @@ def github_uploader(token,repo,title,lang,message,code,branch,content):
 def show_repo(token):
     token=Github(token)
     user=token.get_user()
-    repos=user.get_repos()
-    data=[data.raw_data.get('full_name') for data in repos]
+    name=user.name.replace(" ","")
+    repos=requests.get(f"https://api.github.com/users/{name}/repos")
+    repos=repos.json()
+    total_length=len(repos)
+    datas=[data.get("full_name") for data in repos]
+    print(datas)
+
     
-    return {"list":data}
+    return {"list":datas}

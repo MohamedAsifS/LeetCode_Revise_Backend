@@ -25,16 +25,16 @@ def HandleGithubCallback(request):
    
     social_account=SocialAccount.objects.filter(user=user).first()
     if not social_account:
-       return  redirect(f'https://jgaocgbidphajniogibgjdeleaiocpoh.chromiumapp.org/?error=NoSocialAccount')
+       return  redirect(f'https://mabkgldilcclknoipfmglhhpeoobabfb.chromiumapp.org/?error=NoSocialAccount')
     token=SocialToken.objects.filter(account=social_account,account__provider='github').first()
     if token:
         get_refresh=RefreshToken.for_user(user)
         print(get_refresh)
         get_access=get_refresh.access_token
         print(get_access)
-        return redirect(f'https://jgaocgbidphajniogibgjdeleaiocpoh.chromiumapp.org/?access={get_access}&refresh={get_refresh}')
+        return redirect(f'https://mabkgldilcclknoipfmglhhpeoobabfb.chromiumapp.org/?access={get_access}&refresh={get_refresh}')
     else:
-        return redirect("https://jgaocgbidphajniogibgjdeleaiocpoh.chromiumapp.org/?error=NoAccessToken")
+        return redirect("https://mabkgldilcclknoipfmglhhpeoobabfb.chromiumapp.org/?error=NoAccessToken")
 
 class submit_to_github(APIView):
   authentication_classes = [JWTAuthentication]
@@ -119,6 +119,7 @@ class submit_to_github(APIView):
     runtimePercentile
     memoryPercentile
     question {
+      questionFrontendId
       title
       titleSlug
       content
@@ -144,8 +145,10 @@ class submit_to_github(APIView):
                   print(token,repo)
                   message=f"Runs in {extra_submission['data']['submissionDetails']['runtimeDisplay']} using {extra_submission['data']['submissionDetails']['memoryDisplay']}, beating {round(extra_submission['data']['submissionDetails'][ 'runtimePercentile'])}% in speed. - LeetRevise "
                   content=f"{extra_submission['data']['submissionDetails']['question']['title']} {extra_submission['data']['submissionDetails']['question']['content']}"
+                  question_number=extra_submission['data']['submissionDetails']['question']['questionFrontendId']
+
                   print(content)
-                  res=github_uploader(token=token,repo=repo,title=f"{adding_zero(values["question_id"],4)}-{values["title"]}",lang=languages[values["lang"].capitalize()],message=message,code=values["code"],branch="main",content=content)
+                  res=github_uploader(token=token,repo=repo,title=f"{adding_zero(question_number,4)}-{values["title"]}",lang=languages[values["lang"].capitalize()],message=message,code=values["code"],branch="main",content=content)
                   # github_uploader(token,repo,values['title'],"py","please","print('Asifars')","main")
 
                   # print(res)
@@ -188,7 +191,7 @@ class list_repo(generics.ListAPIView):
              token=SocialToken.objects.filter(account=SocialAccounts,account__provider='github').first().token
              
              data=show_repo(token)
-             print(data)
+             print(data,"asif")
              return JsonResponse(data)
        else:
             return JsonResponse({"message":"Account is not linked with GITHUB"},status=401)
